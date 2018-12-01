@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+        <import type="android.view.View"/>
+
+        <variable
+            name="checkoutVM"
+            type="com.homesorderconsumer.checkout.viewmodel.CheckoutVM"/>
+        <variable
+            name="deliveryAddress"
+            type="com.homesorderconsumer.checkout.model.DeliveryAddress"/>
+        <variable
+            name="checkoutUI"
+            type="com.homesorderconsumer.checkout.model.CheckoutUI"/>
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="5dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_tool_bar_height"
+                android:background="?attr/colorPrimary">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:onClick="@{checkoutVM::onClickBack}"
+                        android:id="@+id/toggle_action"
+                        android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                        android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_back_arrow_black"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_tool_bar_logo_width"
+                        android:layout_height="@dimen/app_tool_bar_logo_height"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_logo_black"/>
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/add_to_cart_button">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:onClick="@{(v) -> checkoutVM.onClickDeliveryAddress(v,checkoutUI,deliveryAddress)}"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/colorAccent"
+                                android:gravity="right|center"
+                                android:paddingRight="10dp"
+                                android:text="@string/add_delivery_address"
+                                android:textColor="@color/font_white"
+                                android:textSize="17sp"
+                                app:font="@{@string/MontserratSemiBold}"/>
+
+                            <LinearLayout
+                                android:visibility="@{checkoutUI.addressOpen?View.VISIBLE:View.GONE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.firstname}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/first_name_caps"
+                                        android:inputType="textPersonName"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.lastname}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/last_name_caps"
+                                        android:inputType="textPersonName"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.email}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/email_caps"
+                                        android:inputType="textEmailAddress"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.telephone}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/mobile_number_caps"
+                                        android:inputType="phone"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.address_line1}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/address_line1_caps"
+                                        android:inputType="text"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.address_line2}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/address_line2_caps"
+                                        android:inputType="text"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+                                <android.support.design.widget.TextInputLayout
+                                    android:visibility="gone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:gravity="right"
+                                        android:text="@={deliveryAddress.postcode}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:hint="@string/post_code_caps"
+                                        android:inputType="number"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:orientation="horizontal">
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_weight="1"
+                                        android:theme="@style/TextInputTheme"
+                                        app:errorEnabled="true">
+
+                                        <EditText
+                                            android:gravity="right"
+                                            android:text="@={deliveryAddress.country_name}"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"
+                                            android:backgroundTint="@color/font_gray"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:hint="@string/country_caps"
+                                            android:inputType="none"
+                                            android:paddingTop="5dp"
+                                            android:textColor="@android:color/black"
+                                            android:theme="@style/TextInputTheme"
+                                            app:font="@{@string/MontserratMedium}"/>
+                                    </android.support.design.widget.TextInputLayout>
+                                    <android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_weight="1"
+                                        android:theme="@style/TextInputTheme"
+                                        app:errorEnabled="true">
+
+                                        <EditText
+                                            android:gravity="right"
+                                            android:text="@={deliveryAddress.city}"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:background="@android:color/transparent"
+                                            android:backgroundTint="@color/font_gray"
+                                            android:cursorVisible="false"
+                                            android:focusable="false"
+                                            android:focusableInTouchMode="false"
+                                            android:hint="@string/region_caps"
+                                            android:inputType="none"
+                                            android:paddingTop="5dp"
+                                            android:textColor="@android:color/black"
+                                            android:theme="@style/TextInputTheme"
+                                            app:font="@{@string/MontserratMedium}"/>
+                                    </android.support.design.widget.TextInputLayout>
+
+
+                                </LinearLayout>
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+
+                                    <EditText
+                                        android:text="@{deliveryAddress.region}"
+                                        android:gravity="right"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@android:color/transparent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:hint="@string/city_caps"
+                                        android:inputType="none"
+                                        android:paddingTop="5dp"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+                                <android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:theme="@style/TextInputTheme"
+                                    app:errorEnabled="true">
+                                    <EditText
+                                        android:onClick="@{(v) -> checkoutVM.onClickArea(v,deliveryAddress)}"
+                                        android:text="@{deliveryAddress.area}"
+                                        android:drawableLeft="@drawable/ic_down_arrow_black"
+                                        android:gravity="right"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:backgroundTint="@color/font_gray"
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:focusableInTouchMode="false"
+                                        android:hint="@string/area_caps"
+                                        android:inputType="none"
+                                        android:paddingTop="5dp"
+                                        android:textColor="@android:color/black"
+                                        android:theme="@style/TextInputTheme"
+                                        app:font="@{@string/MontserratMedium}"/>
+                                </android.support.design.widget.TextInputLayout>
+                                <Button
+                                    android:onClick="@{(v) -> checkoutVM.onClickSaveAndContinue(v,checkoutUI,deliveryAddress)}"
+                                    android:id="@+id/save_address_button"
+                                    style="@style/ButtonTheme"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_margin="10dp"
+                                    android:text="@string/save_and_continue"
+                                    android:textSize="16sp"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:onClick="@{(v) -> checkoutVM.onClickPaymentMethod(v,checkoutUI,deliveryAddress)}"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/colorAccent"
+                                android:gravity="right|center"
+                                android:paddingRight="10dp"
+                                android:text="@string/payment_method"
+                                android:textColor="@color/font_white"
+                                android:textSize="17sp"
+                                app:font="@{@string/MontserratSemiBold}"/>
+                        <LinearLayout
+                            android:visibility="@{checkoutUI.addressSaved?(checkoutUI.paymentMethodOpen?View.VISIBLE:View.GONE):View.GONE}"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_margin="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                            </android.support.v7.widget.RecyclerView>
+                            <Button
+                                android:onClick="@{(v) -> checkoutVM.onClickCheckout(v,checkoutUI,deliveryAddress)}"
+                                android:id="@+id/checkout_button"
+                                style="@style/ButtonTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_margin="10dp"
+                                android:text="@string/checkout"
+                                android:textSize="16sp"
+                                app:font="@{@string/MontserratMedium}"/>
+                        </LinearLayout>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

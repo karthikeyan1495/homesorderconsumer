@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.UIUtil"/>
+
+        <variable
+            name="registerVM"
+            type="com.homesorderconsumer.user.registration.viewmodel.RegisterVM"/>
+
+        <variable
+            name="register"
+            type="com.homesorderconsumer.user.registration.model.Register"/>
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{registerVM::onClickRootView}">
+
+            <include layout="@layout/bg_layout"/>
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                android:onClick="@{registerVM::onClickBack}"
+                android:background="@drawable/ic_back_arrow_white"/>
+
+            <LinearLayout
+                app:marginBottom="@{UIUtil.getBottomSpace()}"
+                android:layout_below="@id/back_btn"
+                android:id="@+id/top_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/logo_image_view"
+                        android:layout_width="140dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_logo_white"/>
+                </RelativeLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="2dp">
+
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/create_account"
+                                android:textColor="@color/font_black"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                app:font="@{@string/MontserratMedium}"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/first_name_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/first_name_caps"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> registerVM.onFirstNameTextChanged(text, start, before, count,register)}"
+                                    android:text="@={register.firstname}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/last_name_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/last_name_caps"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> registerVM.onLastNameTextChanged(text, start, before, count,register)}"
+                                    android:text="@={register.lastname}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/email_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/email_caps"
+                                    android:inputType="textEmailAddress"
+                                    android:layoutDirection="ltr"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> registerVM.onEmailTextChanged(text, start, before, count,register)}"
+                                    android:text="@={register.email}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/password_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="@color/colorAccent">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/password_caps"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> registerVM.onPasswordTextChanged(text, start, before, count,register)}"
+                                    android:text="@={register.password}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/retype_password_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="@color/colorAccent">
+
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/confirm_password_caps"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> registerVM.onConfirmPasswordTextChanged(text, start, before, count,register)}"
+                                    android:text="@={register.confirm_password}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/terms_and_condition_checkbox"
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:button="@drawable/ic_orange_checkbox"/>
+
+                                <TextView
+                                    android:onClick="@{registerVM::onClickTermsAndCondition}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="@string/agree"
+                                    android:textColor="@color/font_gray"
+                                    android:textSize="15sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+
+                                <TextView
+                                    android:onClick="@{registerVM::onClickTermsAndCondition}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="@string/terms_and_conditions_caps"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="15sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/register_btn"
+                                style="@style/ButtonTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:onClick="@{(v) -> registerVM.onClickRegister(v,register)}"
+                                android:text="@string/create_account"
+                                app:font="@{@string/MontserratMedium}"/>
+                        </LinearLayout>
+                    </ScrollView>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

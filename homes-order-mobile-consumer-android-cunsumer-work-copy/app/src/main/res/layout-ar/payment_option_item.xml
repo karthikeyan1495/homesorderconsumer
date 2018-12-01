@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <variable
+            name="paymentOptionItemVM"
+            type="com.homesorderconsumer.checkout.viewmodel.PaymentOptionItemVM"/>
+        <variable
+            name="paymentMethodItem"
+            type="com.homesorderconsumer.checkout.model.PaymentMethodItem"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:onClick="@{(v) -> paymentOptionItemVM.onClickItem(v,paymentMethodItem)}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+            <Button
+                android:background="@{paymentMethodItem.selected?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@{paymentMethodItem.title}"
+                android:textColor="@{paymentMethodItem.selected?@color/font_orange:@color/font_gray}"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:font="@{@string/MontserratRegular}"/>
+            <TextView
+                android:background="@{paymentMethodItem.selected?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                android:clickable="false"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

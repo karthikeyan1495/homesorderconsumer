@@ -1,0 +1,214 @@
+<resources>
+
+    <string name="app_name">Homes Order</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="splash_screen_message">Buy Food &amp; Fashion \n from the best seller</string>
+    <string name="consumer_app">Consumer App</string>
+    <string name="select_your_language">Select Your Language</string>
+
+    <string name="select_location">Select Location</string>
+    <string name="select_country_caps">SELECT COUNTRY</string>
+    <string name="select_city_caps">SELECT CITY</string>
+    <string name="select_area_caps">SELECT AREA</string>
+    <string name="save_and_continue">Save and continue</string>
+
+    <string name="valid_country">Please select country</string>
+    <string name="valid_city">Please select city</string>
+    <string name="valid_area">Please select area</string>
+
+    <string name="home">Home</string>
+    <string name="food">Food</string>
+    <string name="fashion">Fashion</string>
+    <string name="my_account">My Account</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="support">Support</string>
+    <string name="about_us">About us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+
+    <string name="email_caps">EMAIL</string>
+    <string name="password_caps">PASSWORD</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="skip">Skip</string>
+    <string name="valid_email_address_error">Enter a valid email address</string>
+    <string name="please_enter_valid_password">Enter a valid password</string>
+
+    <string name="first_name_caps">FIRST NAME</string>
+    <string name="last_name_caps">LAST NAME</string>
+
+    <string name="confirm_password_caps">CONFIRM PASSWORD</string>
+    <string name="agree">Agree</string>
+    <string name="terms_and_conditions_caps">TERMS &amp; CONDITIONS</string>
+    <string name="terms_and_condtions">Terms and conditions</string>
+    <string name="create_account">Create Account</string>
+    <string name="valid_first_name">Enter a valid first name</string>
+    <string name="valid_last_name">Enter a valid last name</string>
+    <string name="passwords_match_error">Passwords don\'t match</string>
+    <string name="invalid_password_error">Password must be 8 characters long and must contain at least one upper case, one lower case, one number and one symbol</string>
+    <string name="terms_and_condition_accept_error">Please accept terms and condition</string>
+
+
+    <string name="mobile_number_caps">MOBILE NUMBER</string>
+    <string name="valid_phone_number">Enter a valid phone number</string>
+
+
+    <string name="reset_password">Reset Password</string>
+    <string name="reset">RESET</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="logout_alert">Are you sure you want to logout?</string>
+
+    <string name="something_went_wrong_while_retrieving_information">Something went wrong while retrieving information. Please try again later.</string>
+    <string name="no_internet">Please check your internet connection</string>
+
+
+    <string name="hi">Hi %1$s</string>
+    <string name="guest">Guest</string>
+    <string name="food_message">Homemade food at your doorstep</string>
+    <string name="fashion_message">Discover your Online Fashion destination</string>
+
+    <string name="ads">Ads</string>
+    <string name="offer_message">20% off on Pizza</string>
+    <string name="valid_till">Valid till %s</string>
+
+    <string name="sort_caps">SORT</string>
+    <string name="sort_by">Sort By</string>
+    <string name="price_low_high">Price - Low to High</string>
+    <string name="price_high_low">Price - High to Low</string>
+    <string name="most_recent">Most Recent</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="sale_caps">SALE</string>
+    <string name="quantity">Quantity</string>
+    <string name="color">Color</string>
+    <string name="size">Size</string>
+    <string name="review_and_rating">Review &amp; Ratings</string>
+    <string name="delivary_time_message">When you want this to be delivered?</string>
+    <string name="select_delivery_slot">Select Delivery Slot</string>
+    <string name="select_your_delivery_slot">Select your delivery slot</string>
+    <string name="evening">Evening</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="please_select_your_delivery_slot">Please select your delivery slot</string>
+
+
+    <string name="search">Search</string>
+    <string name="cart">Cart</string>
+    <string name="checkout">Checkout</string>
+    <string name="summary">Summary</string>
+    <string name="product">Product</string>
+    <string name="shipping">Shipping</string>
+    <string name="total">Total</string>
+    <string name="remove">Remove</string>
+
+    <string name="please_enter_one_char">Please enter at least one character</string>
+    <string name="change_profile_info">Change Profile Information</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_password">Change Password</string>
+    <string name="save">Save</string>
+    <string name="confirm_password">CONFIRM PASSWORD</string>
+
+    <string name="current_password">CURRENT PASSWORD</string>
+    <string name="new_password">NEW PASSWORD</string>
+
+    <string name="add_delivery_address">[1] Add Delivery Address</string>
+    <string name="address_line1_caps">ADDRESS LINE 1</string>
+    <string name="address_line2_caps">ADDRESS LINE 2</string>
+    <string name="area_caps">AREA</string>
+    <string name="city_caps">CITY</string>
+    <string name="country_caps">COUNTRY</string>
+    <string name="post_code_caps">POST CODE</string>
+    <string name="payment_method">[2] Payment Method</string>
+    <string name="valid_address">Enter a valid address</string>
+    <string name="valid_post_code">Enter a valid post code</string>
+    <string name="please_select_payment_method">Please select payment method</string>
+
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="order_success_message">Your Order #%s has been successfully placed. You can track your order progress on Orders Page.</string>
+    <string name="order">Order #%s</string>
+    <string name="cancel_order">Cancel order</string>
+    <string name="cancel_time_message">%s mins left to cancel</string>
+    <string name="order_total">Total: %s</string>
+    <string name="qty">Qty: %s</string>
+    <string name="delivery_date">Delivery date: %s</string>
+    <string name="order_date">Order date: %s</string>
+    <string name="delivery_address">To be delivered at</string>
+    <string name="rating_and_review">Ratings and Review</string>
+    <string name="rating_available_message">Ratings &amp; Review is available once the \norder is
+        complete</string>
+    <string name="rate_your_product">Rate your product</string>
+    <string name="rate_message">Let other customers know what you think about this product</string>
+    <string name="title">TITLE</string>
+    <string name="comments">COMMENTS</string>
+    <string name="submit">Submit</string>
+
+    <string name="please_select_stars">Please select stars</string>
+    <string name="please_enter_title">Please enter title</string>
+    <string name="please_enter_comments">Please enter comments</string>
+    <string name="name">Name</string>
+    <string name="your_message">Your Message</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="valid_name">Please enter valid name</string>
+    <string name="valid_your_message">Please enter valid your message</string>
+
+    <string name="product_list_empty_message">None of the Vendors sell products under this category. Write to support, we will contact the Vendors for you.</string>
+    <string name="search_product_list_empty_message">\'Sorry, No results found! Please try a
+        different search\'</string>
+    <string name="cart_empty_message">\'You have not added any products to your cart\'</string>
+    <string name="wishlist_empty_message">\'You have not added any products to your
+        wishlist\'</string>
+    <string name="order_list_empty_message">\'You have not made any orders yet\'</string>
+
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+
+    <string name="please_tell_us_more_on_why_you_cancel_this_order">Please tell us more on
+        why you cancel this order:(optional)</string>
+
+    <string name="search_text">Search results for \'%s\'</string>
+
+    <string name="currency">Currency</string>
+    <string name="weight">Weight</string>
+    <string name="shop">Shop: %s</string>
+    <string name="reason">Reason: %s</string>
+    <string name="select_region_caps">SELECT REGION</string>
+    <string name="valid_region">Please select region</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="order_total_price">Order Total</string>
+    <string name="shipping_flat_rate_fixed">Shipping (Flat Rate - Fixed)</string>
+    <string name="region_caps">REGION</string>
+    <string name="track_order">Track Order</string>
+    <string name="order_id">Order ID</string>
+    <string name="billing_last_name">Billing Last Name</string>
+    <string name="valid_order_id">Enter a valid order id</string>
+    <string name="valid_billing_last_name">Enter a valid billing last name</string>
+    <string name="delivery_slot_not_available">Delivery slot not available for selected
+        date</string>
+    <string name="selected_date_with">Selected Date: %s</string>
+    <string name="delivery_date_with">Delivery Date: %s</string>
+    <string name="delivery_slot_with">Delivery Slot: %s</string>
+    <string name="shipping_cost_with">Shipping Cost: %s</string>
+    <string name="continue_text">Continue</string>
+
+    <string name="product_not_available">This product is not available for delivery in your city</string>
+    <string name="delete_unavailable_product">Please delete the unavailable product before proceed
+        the checkout flow</string>
+    <string name="cart_item_remove_alert">Are you sure to remove this product from
+        the cart?</string>
+
+
+    <string name="transaction_id_with">Transaction ID: %s</string>
+    <string name="transaction_failed">Your transaction has been failed, Please retry after some time.</string>
+    <string name="retry">Retry</string>
+
+</resources>

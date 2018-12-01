@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="searchVM"
+            type="com.homesorderconsumer.product.viewmodel.SearchVM"/>
+
+        <variable
+            name="searchKey"
+            type="com.homesorderconsumer.product.model.SearchKey"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="5dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_tool_bar_height"
+                android:background="?attr/colorPrimary">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/back_action"
+                        android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                        android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_back_arrow_black"
+                        android:onClick="@{searchVM::onClickBack}"/>
+
+                    <EditText
+                        android:id="@+id/search_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@id/back_action"
+                        android:background="@drawable/edittext_bg"
+                        android:hint="@string/search"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingBottom="5dp"
+                        android:paddingRight="45dp"
+                        android:text="@={searchKey.searchKey}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratMedium}"/>
+
+                    <ImageView
+                        android:id="@+id/search_view"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/ic_search"
+                        android:onClick="@{(v) -> searchVM.onClickSearch(v,searchKey)}"/>
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:visibility="@{searchKey.displayText.trim().length()==0?View.GONE:View.VISIBLE}"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@{@string/search_text(searchKey.displayText)}"
+                    android:textColor="@color/font_black"
+                    android:textSize="15sp"
+                    app:font="@{@string/MontserratMedium}"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/search_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="@{searchVM.isNoData?View.GONE:View.VISIBLE}">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:visibility="@{searchVM.isNoData?View.VISIBLE:View.GONE}">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_empty_search"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/search_product_list_empty_message"
+                    android:textColor="@color/font_black"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratMedium}"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

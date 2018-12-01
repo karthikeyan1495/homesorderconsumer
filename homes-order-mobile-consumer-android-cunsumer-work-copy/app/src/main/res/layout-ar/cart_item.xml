@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <variable
+            name="cartItemVM"
+            type="com.homesorderconsumer.user.cart.viewmodel.CartItemVM"/>
+
+        <variable
+            name="cartItem"
+            type="com.homesorderconsumer.user.cart.model.CartItem"/>
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="@{(v) -> cartItemVM.onClickItem(v,cartItem)}"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/image_view"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerCrop"
+                        tools:productImage="@{StringUtil.getFirstItem(cartItem.product.media_gallery)}"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/image_view"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:maxLines="2"
+                            android:text="@{StringUtil.getLanguageString(cartItem.product.productNameEN,cartItem.product.productNameAR)}"
+                            android:textColor="@color/font_black"
+                            android:textSize="16sp"
+                            app:font="@{@string/MontserratMedium}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:text="@{StringUtil.setPrice(cartItem.product.finalPrice,cartItem.product.finalPriceInSAR,cartItem.product.qty)}"
+                            android:textColor="@color/font_black"
+                            android:textSize="16sp"
+                            app:font="@{@string/MontserratSemiBold}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:text="@{@string/delivery_date_with(StringUtil.deliveryDateFormatter(cartItem.product.delivery_date))}"
+                            android:textColor="@color/font_black"
+                            android:textSize="14sp"
+                            app:font="@{@string/MontserratRegular}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:ellipsize="end"
+                            android:gravity="right"
+                            android:maxLines="1"
+                            android:text="@{@string/delivery_slot_with(StringUtil.getSlotName(cartItem.product.delivery_slot))}"
+                            android:textColor="@color/font_black"
+                            android:textSize="14sp"
+                            app:font="@{@string/MontserratRegular}"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:text="@string/shipping_cost"
+                                android:textColor="@color/font_black"
+                                android:textSize="14sp"
+                                app:font="@{@string/MontserratRegular}"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:text="@{StringUtil.setPriceARLayout(cartItem.product.deliveryCost,cartItem.product.deliveryCostInSAR)}"
+                                android:textColor="@color/font_black"
+                                android:textSize="14sp"
+                                app:font="@{@string/MontserratRegular}"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/font_gray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/quantity_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:text="@string/quantity"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_toLeftOf="@+id/quantity_text"
+                        android:background="@drawable/textlines"
+                        android:drawableLeft="@drawable/ic_down_arrow_black"
+                        android:gravity="center"
+                        android:minWidth="60dp"
+                        android:onClick="@{(v) -> cartItemVM.onClickQuantity(v,cartItem)}"
+                        android:paddingBottom="5dp"
+                        android:text="@{cartItem.product.qty}"
+                        android:textColor="@color/font_black"
+                        android:textSize="16sp"
+                        app:font="@{@string/MontserratMedium}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:drawableLeft="@drawable/ic_basket_red"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:onClick="@{(v) -> cartItemVM.onClickRemove(v,cartItem)}"
+                        android:text="@string/remove"
+                        android:textColor="@color/font_alizarin"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+                </RelativeLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/content_layout"
+                android:layout_alignTop="@id/content_layout"
+                android:visibility="@{cartItem.product.isAvailable?View.GONE:View.VISIBLE}">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.5"
+                    android:background="@color/black"/>
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:background="@color/sale_color"
+                    android:padding="5dp"
+                    android:text="@string/product_not_available"
+                    android:textColor="@color/font_white"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratRegular}"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_delete"
+                    android:onClick="@{(v) -> cartItemVM.onClickRemove(v,cartItem)}"/>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.homesorderconsumer.util.UIUtil"/>
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <include layout="@layout/bg_layout"/>
+
+
+            <ImageView
+                android:id="@+id/images"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_logo_white"/>
+
+            <TextView
+                android:layout_margin="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:text="@string/splash_screen_message"
+                android:textColor="@color/font_white"
+                android:textSize="20sp"
+                android:lineSpacingExtra="5dp"
+                app:marginBottom="@{UIUtil.getBottomSpace()}"
+                app:font="@{@string/MontserratLight}"/>
+
+            <TextView
+                android:id="@+id/customer_app_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/images"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="@string/consumer_app"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:visibility="gone"
+                app:font="@{@string/MontserratLight}"/>
+
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

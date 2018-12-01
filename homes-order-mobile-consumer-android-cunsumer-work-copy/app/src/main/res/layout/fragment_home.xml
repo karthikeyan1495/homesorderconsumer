@@ -1,0 +1,238 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <import type="com.homesorderconsumer.util.UIUtil"/>
+
+        <variable
+            name="homeVM"
+            type="com.homesorderconsumer.home.viewmodel.HomeVM"/>
+
+        <variable
+            name="user"
+            type="com.homesorderconsumer.user.login.model.User"/>
+
+        <variable
+            name="foodImage"
+            type="String"/>
+
+        <variable
+            name="fashionImage"
+            type="String"/>
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@+id/preference"
+                android:text="@{StringUtil.welcomeWithName()}"
+                android:textColor="@color/font_black"
+                android:textSize="18sp"
+                app:font="@{@string/MontserratMedium}"/>
+
+            <TextView
+                android:id="@+id/preference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:gravity="left"
+                android:onClick="@{homeVM::onClickSelectedArea}"
+                android:text="@{StringUtil.selectedArea()}"
+                android:textColor="@color/font_orange"
+                android:textSize="18sp"
+                app:font="@{@string/MontserratMedium}"/>
+        </RelativeLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/food_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    app:height="@{UIUtil.homeScreenCellHeight()}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:categoryImage="@{foodImage}"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@drawable/food_bg"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:onClickListener="@{homeVM::onClickFood}"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/food"
+                            android:textColor="@color/font_white"
+                            android:textSize="23sp"
+                            app:font="@{@string/MontserratExtraBold}"/>
+
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/food_message"
+                            android:textColor="@color/font_white"
+                            android:textSize="15sp"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/food_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:clipToPadding="false"
+                        android:paddingLeft="150dp">
+                    </android.support.v7.widget.RecyclerView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    app:height="@{UIUtil.homeScreenCellHeight()}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:categoryImage="@{fashionImage}"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@drawable/fashion_bg"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="@{homeVM::onClickFashion}"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fashion"
+                            android:textColor="@color/font_white"
+                            android:textSize="23sp"
+                            app:font="@{@string/MontserratExtraBold}"/>
+
+                        <TextView
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/fashion_message"
+                            android:textColor="@color/font_white"
+                            android:textSize="15sp"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/fashion_recyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingLeft="150dp">
+                    </android.support.v7.widget.RecyclerView>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="@dimen/home_screen_card_left"
+                    android:layout_marginRight="@dimen/home_screen_card_right"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/ads_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/food_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/home_screen_card_left"
+                    android:layout_marginRight="@dimen/home_screen_card_right"
+                    android:layout_marginTop="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/food_promotion_recyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/home_screen_card_left"
+                    android:layout_marginRight="@dimen/home_screen_card_right"
+                    android:layout_marginTop="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="0dp">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/fashion_promotion_recyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

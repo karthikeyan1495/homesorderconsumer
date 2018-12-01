@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    Montserrat-Light
+
+    <string name="MontserratLight">MontserratLight</string>
+    <string name="MontserratMedium">MontserratMedium</string>
+    <string name="MontserratRegular">MontserratRegular</string>
+    <string name="MontserratExtraBold">MontserratExtraBold</string>
+    <string name="MontserratSemiBold">MontserratSemiBold</string>
+
+
+
+    <string-array name="font_file_name">
+        <item>Montserrat-Light.ttf</item>
+        <item>Montserrat-Medium.ttf</item>
+        <item>Montserrat-Regular.ttf</item>
+        <item>Montserrat-ExtraBold.ttf</item>
+        <item>Montserrat-SemiBold.ttf</item>
+    </string-array>
+
+    <string-array name="font_alies_name">
+        <item>@string/MontserratLight</item>
+        <item>@string/MontserratMedium</item>
+        <item>@string/MontserratRegular</item>
+        <item>@string/MontserratExtraBold</item>
+        <item>@string/MontserratSemiBold</item>
+    </string-array>
+
+</resources>

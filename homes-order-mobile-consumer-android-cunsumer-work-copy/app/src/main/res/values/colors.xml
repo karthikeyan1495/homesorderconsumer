@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FDFBFC</color>
+    <color name="colorPrimaryDark">#FDFBFC</color>
+    <color name="colorAccent">#FB780C</color>
+
+    <color name="black_Semi_transparent">#A6000000</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="sale_color">#f2253e</color>
+
+    <color name="font_black">#19213a</color>
+    <color name="font_gray">#656d74</color>
+    <color name="font_white">#ffffff</color>
+    <color name="font_orange">#FB780C</color>
+    <color name="font_alizarin">#F2253E</color>
+
+   <color name="bg_color">#edede4</color>
+
+</resources>

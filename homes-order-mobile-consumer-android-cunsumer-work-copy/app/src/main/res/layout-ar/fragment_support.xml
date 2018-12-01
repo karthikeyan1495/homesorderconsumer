@@ -1,0 +1,143 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="support"
+            type="com.homesorderconsumer.support.model.Support"/>
+
+        <variable
+            name="supportVM"
+            type="com.homesorderconsumer.support.viewmodel.SupportVM"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+
+        <LinearLayout
+            android:layout_above="@id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/support"
+                android:textColor="@color/font_black"
+                android:textSize="18sp"
+                app:font="@{@string/MontserratMedium}"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/name_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputTheme"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/font_gray"
+                            android:hint="@string/name"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:gravity="right"
+                            android:text="@={support.name}"
+                            android:textColor="@android:color/black"
+                            android:theme="@style/TextInputTheme"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/email_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputTheme"
+                        app:errorEnabled="true">
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/font_gray"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:gravity="right"
+                            android:text="@={support.email}"
+                            android:textColor="@android:color/black"
+                            android:theme="@style/TextInputTheme"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/phone_number_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputTheme"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/font_gray"
+                            android:hint="@string/phone_number"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:gravity="right"
+                            android:text="@={support.phone}"
+                            android:textColor="@android:color/black"
+                            android:theme="@style/TextInputTheme"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/your_message_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextInputTheme"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:gravity="top|right"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/font_gray"
+                            android:hint="@string/your_message"
+                            android:inputType="textMultiLine"
+                            android:text="@={support.message}"
+                            android:textColor="@android:color/black"
+                            android:theme="@style/TextInputTheme"
+                            app:font="@{@string/MontserratMedium}"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <Button
+            android:onClick="@{(v) -> supportVM.onClickSubmit(v,support)}"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/submit_btn"
+            style="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/submit"
+            app:font="@{@string/MontserratMedium}"/>
+    </RelativeLayout>
+</layout>

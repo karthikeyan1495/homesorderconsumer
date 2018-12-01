@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="CategoryVM"
+            type="com.homesorderconsumer.category.viewmodel.CategoryVM"/>
+
+        <variable
+            name="cartAndSearchVM"
+            type="com.homesorderconsumer.home.viewmodel.CartAndSearchVM"/>
+        <variable
+            name="cartCount"
+            type="String"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:background="@color/bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="5dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_tool_bar_height"
+                android:background="?attr/colorPrimary">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:onClick="@{CategoryVM::onClickBack}"
+                        android:id="@+id/toggle_action"
+                        android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                        android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_back_arrow_black"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_tool_bar_logo_width"
+                        android:layout_height="@dimen/app_tool_bar_logo_height"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_logo_black"/>
+
+                    <include
+                        layout="@layout/cart_and_search_layout"
+                        app:cartCount="@{cartCount}"
+                        app:cartAndSearchVM="@{cartAndSearchVM}"/>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v4.view.ViewPager
+                android:layout_weight="2.5"
+                android:layout_margin="10dp"
+                android:id="@+id/ads_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/category_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

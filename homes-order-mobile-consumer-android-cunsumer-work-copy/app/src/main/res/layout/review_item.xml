@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+        <variable
+            name="reviewItemVM"
+            type="com.homesorderconsumer.product.viewmodel.ReviewItemVM"/>
+        <variable
+            name="reviewItem"
+            type="com.homesorderconsumer.product.model.ReviewItem"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/star_rating"
+                    android:text="@{reviewItem.title}"
+                    android:textColor="@color/font_black"
+                    android:textSize="15sp"
+                    app:font="@{@string/MontserratMedium}"/>
+
+                <RatingBar
+                    android:id="@+id/star_rating"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:clickable="false"
+                    android:numStars="5"
+                    android:rating="@{StringUtil.reviewRating(reviewItem.ratingValue)}"
+                    android:stepSize=".5"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@+id/star_rating"
+                android:text="@{reviewItem.detail}"
+                android:textColor="@color/font_gray"
+                android:textSize="14sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/date"
+                    android:text="@{reviewItem.name}"
+                    android:textColor="@color/font_black"
+                    android:textSize="15sp"
+                    app:font="@{@string/MontserratMedium}"/>
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:text="@{StringUtil.getDataFormat(reviewItem.created_at)}"
+                    android:textColor="@color/font_black"
+                    android:textSize="14sp"
+                    app:font="@{@string/MontserratRegular}"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/font_gray"/>
+    </LinearLayout>
+
+</layout>

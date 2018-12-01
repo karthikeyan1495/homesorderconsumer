@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profileVM"
+            type="com.homesorderconsumer.user.myaccount.profile.viewmodel.ProfileVM"/>
+
+        <variable
+            name="profileUpdate"
+            type="com.homesorderconsumer.user.myaccount.profile.model.ProfileUpdate"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/back_btn"
+                    android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                    android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_back_arrow_black"
+                    android:onClick="@{profileVM::onClickBack}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/change_profile_info"
+                    android:textColor="@color/font_black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:font="@{@string/MontserratMedium}"/>
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/email_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/email_caps"
+                            android:textColor="@color/font_gray"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="10dp"
+                            app:font="@{@string/MontserratRegular}"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{profileUpdate.email}"
+                            android:textColor="@color/font_black"
+                            android:textSize="14sp"
+                            app:font="@{@string/MontserratRegular}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/first_name_caps"
+                            android:textColor="@color/font_gray"
+                            android:textSize="14sp"
+                            app:font="@{@string/MontserratRegular}"/>
+                        <EditText
+                            android:background="@drawable/textlines"
+                            android:inputType="text"
+                            android:layout_weight="1"
+                            android:text="@={profileUpdate.firstname}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:font="@{@string/MontserratRegular}"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/last_name_caps"
+                            android:textColor="@color/font_gray"
+                            android:textSize="14sp"
+                            app:font="@{@string/MontserratRegular}"/>
+                        <EditText
+                            android:background="@drawable/textlines"
+                            android:inputType="text"
+                            android:layout_weight="1"
+                            android:text="@={profileUpdate.lastname}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:font="@{@string/MontserratRegular}"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:onClick="@{(v) -> profileVM.onClickSave(v,profileUpdate)}"
+                        style="@style/ButtonTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/save"
+                        app:font="@{@string/MontserratMedium}"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

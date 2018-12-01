@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <variable
+            name="orderProductItemVM"
+            type="com.homesorderconsumer.user.myorder.viewmodel.OrderProductItemVM"/>
+
+        <variable
+            name="orderProductItem"
+            type="com.homesorderconsumer.user.myorder.model.OrderProductItem"/>
+
+        <variable
+            name="ordersItem"
+            type="com.homesorderconsumer.user.myorder.model.OrdersItem"/>
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="120dp"
+                    android:layout_height="130dp"
+                    android:background="@color/bg_color"
+                    android:scaleType="centerCrop"
+                    tools:productImage="@{StringUtil.getFirstItem(orderProductItem.media_gallery)}"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/bottom_view"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/image_view"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:maxLines="2"
+                        android:text="@{StringUtil.getLanguageString(orderProductItem.productNameEN,orderProductItem.productNameAR)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:text="@{StringUtil.setPrice(orderProductItem.price,orderProductItem.priceInSAR)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratMedium}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:text="@{@string/qty(orderProductItem.qty_ordered)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:gravity="right"
+                        android:text="@{orderProductItem.displaytext}"
+                        android:textColor="@color/font_orange"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratMedium}"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/image_view"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        android:text="@{@string/reason(orderProductItem.comment)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        android:visibility="@{StringUtil.showCancelReason(orderProductItem.comment)?View.VISIBLE:View.GONE}"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:text="@{@string/order_date(StringUtil.formatCreatedAtDate(ordersItem.created_at))}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:id="@+id/delivery_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:text="@{@string/delivery_date(orderProductItem.deliveryDate)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:text="@{@string/delivery_slot_with(StringUtil.getSlotName(orderProductItem.delivery_slot))}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shipping_cost"
+                            android:textColor="@color/font_black"
+                            android:textSize="15sp"
+                            app:font="@{@string/MontserratRegular}"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{StringUtil.setPriceARLayout(orderProductItem.delivery_price,orderProductItem.delivery_priceInSAR)}"
+                            android:textColor="@color/font_black"
+                            android:textSize="15sp"
+                            app:font="@{@string/MontserratRegular}"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="@{@string/shop(orderProductItem.brand)}"
+                        android:textColor="@color/font_orange"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorAccent"
+                android:onClick="@{(v) -> orderProductItemVM.onClickRatingAndReview(v,ordersItem,orderProductItem)}"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/rating_and_review"
+                    android:textColor="@color/font_white"
+                    android:textSize="15sp"
+                    app:font="@{@string/MontserratMedium}"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>

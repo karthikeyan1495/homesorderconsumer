@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cancelOrderVM"
+            type="com.homesorderconsumer.user.myorder.viewmodel.CancelOrderVM"/>
+
+        <variable
+            name="cancelOrder"
+            type="com.homesorderconsumer.user.myorder.model.CancelOrder"/>
+
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_color"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/cancel_order"
+                    android:textColor="@color/font_black"
+                    android:textSize="18sp"
+                    app:font="@{@string/MontserratSemiBold}"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_close_black"
+                    android:onClick="@{cancelOrderVM::onClickClose}"/>
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/please_tell_us_more_on_why_you_cancel_this_order"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratRegular}"/>
+
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/ic_gray_rect_bg"
+                        android:gravity="right|top"
+                        android:inputType="textMultiLine"
+                        android:padding="5dp"
+                        android:text="@={cancelOrder.comment}"
+                        android:textColor="@color/font_black"
+                        android:textSize="15sp"
+                        app:font="@{@string/MontserratMedium}"/>
+
+                    <Button
+                        style="@style/ButtonTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{(v) -> cancelOrderVM.onClickSubmit(v,cancelOrder)}"
+                        android:text="@string/submit"
+                        app:font="@{@string/MontserratMedium}"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

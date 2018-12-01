@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Don't translate this string -->
+
+    <string name="en">en</string>
+    <string name="ar">ar</string>
+
+    <string name="aed">AED</string>
+    <string name="sar">SAR</string>
+
+    <string-array name="language_key_array">
+        <item>@string/en</item>
+        <item>@string/ar</item>
+    </string-array>
+
+    <string-array name="language_array">
+        <item>@string/english</item>
+        <item>@string/arabic</item>
+    </string-array>
+
+    <string-array name="currency_array">
+        <item>@string/aed</item>
+        <item>@string/sar</item>
+    </string-array>
+
+
+    <string-array name="menu_array_user">
+        <item>@string/home</item>
+        <item>@string/food</item>
+        <item>@string/fashion</item>
+        <item>@string/my_account</item>
+        <item>@string/my_orders</item>
+        <item>@string/my_wishlist</item>
+        <item>@string/support</item>
+        <item>@string/about_us</item>
+        <item>@string/privacy_policy</item>
+        <item>@string/logout</item>
+    </string-array>
+
+    <string-array name="menu_array_guest">
+        <item>@string/home</item>
+        <item>@string/food</item>
+        <item>@string/fashion</item>
+        <item>@string/support</item>
+        <item>@string/about_us</item>
+        <item>@string/privacy_policy</item>
+        <item>@string/track_order</item>
+        <item>@string/change_language</item>
+        <item>@string/login</item>
+    </string-array>
+
+</resources>

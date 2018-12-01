@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="myOrderDetailVM"
+            type="com.homesorderconsumer.user.myorder.viewmodel.MyOrderDetailVM"/>
+
+        <variable
+            name="ordersItem"
+            type="com.homesorderconsumer.user.myorder.model.OrdersItem"/>
+
+        <variable
+            name="cartAndSearchVM"
+            type="com.homesorderconsumer.home.viewmodel.CartAndSearchVM"/>
+
+        <variable
+            name="cartCount"
+            type="String"/>
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="5dp">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_tool_bar_height"
+                android:background="?attr/colorPrimary">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/toggle_action"
+                        android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                        android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_back_arrow_black"
+                        android:onClick="@{myOrderDetailVM::onClickBack}"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_tool_bar_logo_width"
+                        android:layout_height="@dimen/app_tool_bar_logo_height"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_logo_black"/>
+
+                    <include
+                        layout="@layout/cart_and_search_layout"
+                        app:cartAndSearchVM="@{cartAndSearchVM}"
+                        app:cartCount="@{cartCount}"/>
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_color"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/title_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@{@string/order(ordersItem.increment_id)}"
+                        android:textColor="@color/font_black"
+                        android:textSize="16sp"
+                        app:font="@{@string/MontserratMedium}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@{StringUtil.setPrice(@string/order_total(ordersItem.order_total),@string/order_total(ordersItem.order_totalInSAR))}"
+                        android:textColor="@color/font_black"
+                        android:textSize="16sp"
+                        app:font="@{@string/MontserratMedium}"/>
+                </RelativeLayout>
+
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/title_view">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:visibility="@{ordersItem.remainingTime==0?View.GONE:View.VISIBLE}"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardElevation="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/timer"
+                                    android:tag="@{ordersItem}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_toLeftOf="@id/status_textView"
+                                    android:text="@{@string/cancel_time_message(ordersItem.remainingTime)}"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="13sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+
+                                <TextView
+                                    android:id="@+id/status_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:onClick="@{(v) -> myOrderDetailVM.onClickStatus(v,ordersItem)}"
+                                    android:text="@{ordersItem.remainingTime==0?ordersItem.status:@string/cancel_order}"
+                                    android:textColor="@{ordersItem.remainingTime==0?@color/font_black:@color/font_alizarin}"
+                                    android:textSize="15sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </android.support.v7.widget.RecyclerView>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardElevation="1dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/delivery_address"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="13sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:text="@{StringUtil.getDeliveryAddress(ordersItem.customer)}"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="15sp"
+                                    app:font="@{@string/MontserratRegular}"/>
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+            </RelativeLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

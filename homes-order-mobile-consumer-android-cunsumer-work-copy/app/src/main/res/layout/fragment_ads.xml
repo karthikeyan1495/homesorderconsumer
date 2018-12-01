@@ -1,0 +1,67 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adsVM"
+            type="com.homesorderconsumer.ads.viewmodel.AdsVM"/>
+        <variable
+            name="adds"
+            type="com.homesorderconsumer.category.model.Adds"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:adsImage="@{adds.image}"/>
+        <TextView
+            android:visibility="gone"
+            app:font="@{@string/MontserratRegular}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black_Semi_transparent"
+            android:text="@string/ads"
+            android:textColor="@color/font_white"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textSize="16sp"/>
+        <LinearLayout
+            android:visibility="gone"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/black_Semi_transparent">
+            <TextView
+                app:font="@{@string/MontserratMedium}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{adds.name}"
+                android:textColor="@color/font_white"
+                android:textSize="16sp"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="3dp"
+                app:font="@{@string/MontserratRegular}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{adds.valid}"
+                android:textColor="@color/font_white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewWidth"
+            type="Integer"/>
+        <variable
+            name="productItemVM"
+            type="com.homesorderconsumer.product.viewmodel.ProductItemVM"/>
+
+        <variable
+            name="products"
+            type="com.homesorderconsumer.product.model.Products"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/card_view"
+        android:layout_width="200dp"
+        app:width="@{viewWidth}"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:onClick="@{(v) -> productItemVM.onClickItem(v,products)}"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_image"
+                tools:productImage="@{StringUtil.getFirstItem(products.media_gallery)}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/sale_color"
+                android:paddingBottom="2dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="2dp"
+                android:text="@string/sale_caps"
+                android:textColor="@color/font_white"
+                android:textSize="16sp"
+                app:font="@{@string/MontserratRegular}"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{StringUtil.getLanguageString(products.productNameEN,products.productNameAR)}"
+                android:textColor="@color/font_black"
+                android:textSize="15sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@{@string/shop(products.brand)}"
+                android:textColor="@color/font_black"
+                android:textSize="15sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="@{StringUtil.setPrice(products.special_price,products.special_priceInSAR)}"
+                    android:textColor="@color/font_orange"
+                    android:textSize="13sp"
+                    app:font="@{@string/MontserratRegular}"/>
+
+                <TextView
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_strike_through"
+                    android:ellipsize="end"
+                    android:text="@{StringUtil.setPrice(products.price,products.priceInSAR)}"
+                    android:textColor="@color/font_black"
+                    android:textSize="13sp"
+                    app:font="@{@string/MontserratMedium}"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

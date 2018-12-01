@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+        <variable
+            name="sortingOptionVM"
+            type="com.homesorderconsumer.product.viewmodel.SortingOptionVM"/>
+        <variable
+            name="sortByEnum"
+            type="com.homesorderconsumer.product.SortByEnum"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/sort_by"
+                    android:textColor="@color/font_black"
+                    android:textSize="18sp"
+                    app:font="@{@string/MontserratSemiBold}"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_close_black"
+                    android:onClick="@{sortingOptionVM::onClickClose}"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{sortingOptionVM::onClickSortOption}"
+                android:tag="1">
+
+                <Button
+                    android:clickable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@{StringUtil.mostRecentFilter(sortByEnum)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                    android:text="@string/most_recent"
+                    android:textAllCaps="false"
+                    android:textColor="@{StringUtil.mostRecentFilter(sortByEnum)?@color/font_orange:@color/font_gray}"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratRegular}"/>
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@{StringUtil.mostRecentFilter(sortByEnum)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                    android:clickable="false"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{sortingOptionVM::onClickSortOption}"
+                android:tag="2">
+
+                <Button
+                    android:clickable="false"
+                    android:text="@string/price_low_high"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@{StringUtil.lowToHighFilter(sortByEnum)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                    android:textAllCaps="false"
+                    android:textColor="@{StringUtil.lowToHighFilter(sortByEnum)?@color/font_orange:@color/font_gray}"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratRegular}"/>
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@{StringUtil.lowToHighFilter(sortByEnum)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                    android:clickable="false"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{sortingOptionVM::onClickSortOption}"
+                android:tag="3">
+                <Button
+                    android:clickable="false"
+                    android:text="@string/price_high_low"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@{StringUtil.highToLowFilter(sortByEnum)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                    android:textAllCaps="false"
+                    android:textColor="@{StringUtil.highToLowFilter(sortByEnum)?@color/font_orange:@color/font_gray}"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratRegular}"/>
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@{StringUtil.highToLowFilter(sortByEnum)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                    android:clickable="false"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

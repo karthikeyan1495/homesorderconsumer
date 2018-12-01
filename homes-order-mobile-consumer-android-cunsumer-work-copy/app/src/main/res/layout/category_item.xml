@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+        <variable
+            name="viewHeight"
+            type="Integer"/>
+        <variable
+            name="categoryItemVM"
+            type="com.homesorderconsumer.category.viewmodel.CategoryItemVM"/>
+        <variable
+            name="child"
+            type="com.homesorderconsumer.category.model.Child"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:height="@{viewHeight}"
+        app:width="@{viewHeight}">
+
+        <android.support.v7.widget.CardView
+            android:onClick="@{(v) -> categoryItemVM.onClickItem(v,child)}"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:categoryImage="@{child.image}"/>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/black_Semi_transparent"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@{StringUtil.getLanguageString(child.name,child.nameAR)}"
+                    android:textColor="@color/font_white"
+                    android:textSize="16sp"
+                    app:font="@{@string/MontserratMedium}"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</layout>

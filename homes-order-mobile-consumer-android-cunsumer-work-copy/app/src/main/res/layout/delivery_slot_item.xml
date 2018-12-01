@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+        <variable
+            name="deliverySlotItemVM"
+            type="com.homesorderconsumer.product.viewmodel.DeliverySlotItemVM"/>
+        <variable
+            name="slots"
+            type="com.homesorderconsumer.product.model.Slots"/>
+        <variable
+            name="deliverySlots"
+            type="com.homesorderconsumer.product.model.DeliverySlots"/>
+        <variable
+            name="selectedDeliverySlot"
+            type="com.homesorderconsumer.product.model.SelectedDeliverySlot"/>
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:onClick="@{(v) -> deliverySlotItemVM.onClickDeliveryOption(v,deliverySlots,selectedDeliverySlot)}"
+            android:tag="1"
+            android:visibility="@{slots.morning?View.VISIBLE:View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{StringUtil.addCheckMarkMorning(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                android:tag="1"
+                android:text="@string/morning"
+                android:textAllCaps="false"
+                android:textColor="@{StringUtil.addCheckMarkMorning(selectedDeliverySlot,deliverySlots.date)?@color/font_orange:@color/font_gray}"
+                android:textSize="16sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <TextView
+                android:clickable="false"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:background="@{StringUtil.addCheckMarkMorning(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="@{(v) -> deliverySlotItemVM.onClickDeliveryOption(v,deliverySlots,selectedDeliverySlot)}"
+            android:tag="2"
+            android:visibility="@{slots.afternoon?View.VISIBLE:View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{StringUtil.addCheckMarkAfterNoon(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                android:tag="1"
+                android:text="@string/afternoon"
+                android:textAllCaps="false"
+                android:textColor="@{StringUtil.addCheckMarkAfterNoon(selectedDeliverySlot,deliverySlots.date)?@color/font_orange:@color/font_gray}"
+                android:textSize="16sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <TextView
+                android:clickable="false"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:background="@{StringUtil.addCheckMarkAfterNoon(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="@{(v) -> deliverySlotItemVM.onClickDeliveryOption(v,deliverySlots,selectedDeliverySlot)}"
+            android:tag="3"
+            android:visibility="@{slots.evening?View.VISIBLE:View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{StringUtil.addCheckMarkEvening(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_orange_rect_bg:@drawable/ic_gray_rect_bg}"
+                android:tag="1"
+                android:text="@string/evening"
+                android:textAllCaps="false"
+                android:textColor="@{StringUtil.addCheckMarkEvening(selectedDeliverySlot,deliverySlots.date)?@color/font_orange:@color/font_gray}"
+                android:textSize="16sp"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <TextView
+                android:clickable="false"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:background="@{StringUtil.addCheckMarkEvening(selectedDeliverySlot,deliverySlots.date)?@drawable/ic_radio_checked_orange:@drawable/ic_radio_unchecked_gray}"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

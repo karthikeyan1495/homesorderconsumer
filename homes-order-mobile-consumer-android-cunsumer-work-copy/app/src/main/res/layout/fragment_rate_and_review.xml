@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.StringUtil"/>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="productRateAndReviewVM"
+            type="com.homesorderconsumer.user.myorder.viewmodel.ProductRateAndReviewVM"/>
+
+        <variable
+            name="orderProductItem"
+            type="com.homesorderconsumer.user.myorder.model.OrderProductItem"/>
+
+        <variable
+            name="reviewPost"
+            type="com.homesorderconsumer.user.myorder.model.ReviewPost"/>
+
+        <variable
+            name="ordersItem"
+            type="com.homesorderconsumer.user.myorder.model.OrdersItem"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bg_color"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/rating_and_review"
+                    android:textColor="@color/font_black"
+                    android:textSize="18sp"
+                    app:font="@{@string/MontserratSemiBold}"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_close_black"
+                    android:onClick="@{productRateAndReviewVM::onClickClose}"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/rating_available_message"
+                android:textColor="@color/font_black"
+                android:textSize="15sp"
+                android:visibility="@{StringUtil.showReview(orderProductItem)?View.GONE:View.VISIBLE}"
+                app:font="@{@string/MontserratRegular}"/>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{StringUtil.showReview(orderProductItem)?View.VISIBLE:View.GONE}">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rate_your_product"
+                                android:textColor="@color/font_black"
+                                android:textSize="15sp"
+                                app:font="@{@string/MontserratRegular}"/>
+
+                            <RatingBar
+                                style="?android:attr/ratingBarStyleIndicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:isIndicator="@{StringUtil.showReviewSubmit(reviewPost)?false:true}"
+                                android:numStars="5"
+                                android:rating="@={reviewPost.ratingValue}"
+                                android:stepSize="1"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardElevation="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rate_message"
+                                android:textColor="@color/font_black"
+                                android:textSize="15sp"
+                                app:font="@{@string/MontserratRegular}"/>
+
+                            <EditText
+                                android:focusable="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:focusableInTouchMode="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:cursorVisible="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:backgroundTint="@color/font_gray"
+                                android:hint="@string/title"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:text="@={reviewPost.title}"
+                                android:textColor="@color/font_black"
+                                android:theme="@style/TextInputTheme"
+                                app:font="@{@string/MontserratMedium}"/>
+
+                            <EditText
+                                android:focusable="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:focusableInTouchMode="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:cursorVisible="@{StringUtil.showReviewSubmit(reviewPost)}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minHeight="80dp"
+                                android:layout_marginTop="5dp"
+                                android:gravity="left|top"
+                                android:backgroundTint="@color/font_gray"
+                                android:hint="@string/comments"
+                                android:inputType="textMultiLine"
+                                android:text="@={reviewPost.detail}"
+                                android:textColor="@color/font_black"
+                                android:theme="@style/TextInputTheme"
+                                app:font="@{@string/MontserratMedium}"/>
+
+                            <Button
+                                style="@style/ButtonTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="5dp"
+                                android:onClick="@{(v) -> productRateAndReviewVM.onClickSubmit(v,orderProductItem,reviewPost)}"
+                                android:text="@string/submit"
+                                android:visibility="@{StringUtil.showReviewSubmit(reviewPost)?View.VISIBLE:View.GONE}"
+                                app:font="@{@string/MontserratMedium}"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "633548992651",
+    "firebase_url": "https://homesorder-consumer.firebaseio.com",
+    "project_id": "homesorder-consumer",
+    "storage_bucket": "homesorder-consumer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633548992651:android:a444730cf5ed1c9f",
+        "android_client_info": {
+          "package_name": "com.homesorderconsumer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633548992651-grd5q39vqb65lh2gkb65kmk8df48lvhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoJNer8O__gddKNt3Oj2XOb7kCG7I7PSQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

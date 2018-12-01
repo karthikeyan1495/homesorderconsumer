@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.homesorderconsumer.util.UIUtil"/>
+
+        <variable
+            name="loginVM"
+            type="com.homesorderconsumer.user.login.viewmodel.LoginVM"/>
+
+        <variable
+            name="login"
+            type="com.homesorderconsumer.user.login.model.Login"/>
+
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{loginVM::onClickRootView}">
+
+            <include layout="@layout/bg_layout"/>
+
+            <Button
+                android:onClick="@{loginVM::onClickBack}"
+                android:id="@+id/back_btn"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_width="@dimen/app_tool_bar_back_arrow_width"
+                android:layout_height="@dimen/app_tool_bar_back_arrow_height"
+                android:background="@drawable/ic_back_arrow_white"/>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/back_btn"
+                app:marginBottom="@{UIUtil.getBottomSpace()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/logo_image_view"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/ic_logo_white"/>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="2dp">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/login"
+                                android:textColor="@color/font_black"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                app:font="@{@string/MontserratMedium}"/>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/sign_in_username_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true">
+
+                                <EditText
+                                    android:id="@+id/sign_in_username"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/email_caps"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> loginVM.onEmailTextChanged(text, start, before, count,login)}"
+                                    android:text="@={login.username}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/sign_in_password_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/TextInputTheme"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true"
+                                app:passwordToggleTint="@color/colorAccent">
+
+                                <EditText
+                                    android:id="@+id/sign_in_password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:backgroundTint="@color/font_gray"
+                                    android:hint="@string/password_caps"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1"
+                                    android:onTextChanged="@{(text, start, before, count) -> loginVM.onPasswordTextChanged(text, start, before, count,login)}"
+                                    android:text="@={login.password}"
+                                    android:textColor="@android:color/black"
+                                    android:theme="@style/TextInputTheme"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </android.support.design.widget.TextInputLayout>
+
+                            <Button
+                                android:id="@+id/sign_in_btn"
+                                style="@style/ButtonTheme"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:onClick="@{(v) -> loginVM.onClickLogin(v,login)}"
+                                android:text="@string/sign_in"
+                                app:font="@{@string/MontserratMedium}"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginTop="20dp">
+
+                                <TextView
+                                    android:id="@+id/sign_in_register_now"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:onClick="@{loginVM::onClickSignup}"
+                                    android:text="@string/sign_up"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    app:font="@{@string/MontserratMedium}"/>
+
+                                <TextView
+                                    android:id="@+id/forget_pass_text_view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:onClick="@{loginVM::onClickForgotPassword}"
+                                    android:text="@string/forgot_password"
+                                    android:textColor="@color/font_black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    app:font="@{@string/MontserratMedium}"/>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </ScrollView>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

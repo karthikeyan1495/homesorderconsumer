@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Development -->
+    <!-- <string name="base_url">http://homesorder.kendev.xyz/homesorder/public/api/</string> -->
+
+
+     <!-- Production -->
+     <string name="base_url">https://vendors.homesorder.ae/api/</string>
+
+    <string name="area_list_url">https://vendors.homesorder.ae/areas.json</string>
+
+    <string name="terms_and_condition_url_en">https://vendors.homesorder.ae/vendor/terms/en</string>
+    <string name="terms_and_condition_url_ar">https://vendors.homesorder.ae/vendor/terms/ar</string>
+
+    <string name="about_us_url_en">https://www.homesorder.ae/who-we-are</string>
+    <string name="about_us_url_ar">https://www.homesorder.ae/who-we-are?___store=ar&amp;___from_store=en</string>
+
+
+    <string name="privacy_policy_url_en">https://www.homesorder.ae/privacy-policy-cookie-restriction-mode</string>
+    <string
+        name="privacy_policy_url_ar">https://www.homesorder.ae/privacy-policy-cookie-restriction-mode?___store=ar&amp;___from_store=en</string>
+
+</resources>
